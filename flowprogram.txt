@@ -1,0 +1,22 @@
+1- APP.JsCOMPONENT
+ 
+    (manages URLForm.js file)
+    
+    2-URL Form.js(file)
+     Input: long URL           
+    -custom code     
+    -expiry in mins
+     Validates + generates     
+      short URL    
+      Calls onShorten()
+
+      
+      3- History Component       
+      Displays list of all        
+      shortened URLs with:        
+  - Original URL             
+  - Short URL                
+  - Custom code              
+  - Expiry timestamp     
+
+  output displayed in a react app localhost:3000
