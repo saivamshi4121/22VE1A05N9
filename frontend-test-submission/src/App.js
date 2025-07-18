@@ -2,13 +2,15 @@
 import './App.css';
 import React from 'react';
 import ShortUrl from './Components/ShortUrl';
-import UrlTable from './Components/UrlTable';
+
+import StatsPage from './Pages/StatsPage';
 
 function App() {
   return (
     <>
     <ShortUrl />
-    <UrlTable />
+  
+    <StatsPage />
     </>
   );
 }
