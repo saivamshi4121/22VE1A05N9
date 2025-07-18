@@ -35,7 +35,7 @@ function ShortUrl(props) {
                         <div style={{ color: "red" }}>{props.errorShortcode}</div>
                     )}
                 </div>
-                {/* Button in its own div for alignment */}
+               
                 <div style={{ alignSelf: "flex-end", minWidth: 100 }}>
                     <button type="submit" style={{ padding: "0.5em 1.5rem" }}>
                         DO IT SHORT
