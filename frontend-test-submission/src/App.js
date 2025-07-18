@@ -1,17 +1,26 @@
+import React, { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ShortUrl from "./Components/ShortUrl";
+import StatsPage from "./Pages/StatsPage";
+import RedirectPage from "./Pages/Redirect";
+import { LogProvider } from "../LoggingMiddleware/loginmiddle";
 
-import './App.css';
-import React from 'react';
-import ShortUrl from './Components/ShortUrl';
+import ShortenerPage from "./Components/ShortenerPage";
 
-import StatsPage from './Pages/StatsPage';
 
 function App() {
+  const [entries, setEntries] = useState([]);
+
   return (
-    <>
-    <ShortUrl />
-  
-    <StatsPage />
-    </>
+    <LogProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<ShortenerPage entries={entries} setEntries={setEntries} />} />
+          <Route path="/stats" element={<StatsPage entries={entries} />} />
+          <Route path="/:shortcode" element={<RedirectPage entries={entries} />} />
+        </Routes>
+      </BrowserRouter>
+    </LogProvider>
   );
 }
 

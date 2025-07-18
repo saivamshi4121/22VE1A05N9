@@ -1,16 +1,21 @@
-import React from "react";
-import React,{ useState, useEffect } from "react";
-function RedirectPage(props) {
-useEffect(() => {
-    const originalUrl = "https://example.com";
-    window.location.href = originalUrl;
-}, []);
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-return(
+function RedirectPage({ entries }) {
+  const { shortcode } = useParams();
+
+  useEffect(() => {
+    const entry = entries.find(e => e.shortcode === shortcode);
+    if (entry) {
+      window.location.href = entry.originalUrl;
+    }
+  }, [entries, shortcode]);
+
+  return (
     <div>
-        <p> redirecting please wait</p>
+      <p>redirecting please wait</p>
     </div>
-);
+  );
 }
 
-export default RedirectComponent;
+export default RedirectPage;

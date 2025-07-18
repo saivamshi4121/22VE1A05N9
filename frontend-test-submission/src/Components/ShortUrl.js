@@ -1,49 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 
 function ShortUrl(props) {
-    return (
-        <form onSubmit={props.onSubmit}>
-            <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-                <div style={{ flex: 1, minWidth: 220 }}>
-                    <label>
-                        Original URL:<br />
-                        <input
-                            type="text"
-                            name="url"
-                            value={props.url}
-                            onChange={props.onChange}
-                            required
-                            style={{ width: "100%" }}
-                        />
-                    </label>
-                    {props.errorUrl && (
-                        <div style={{ color: "red" }}>{props.errorUrl}</div>
-                    )}
-                </div>
-                <div style={{ flex: 1, marginLeft: "1rem" }}>
-                    <label>
-                        Shortcode:<br />
-                        <input
-                            type="text"
-                            name="shortcode"
-                            value={props.shortcode}
-                            onChange={props.onChange}
-                            style={{ width: "100%" }}
-                        />
-                    </label>
-                    {props.errorShortcode && (
-                        <div style={{ color: "red" }}>{props.errorShortcode}</div>
-                    )}
-                </div>
-               
-                <div style={{ alignSelf: "flex-end", minWidth: 100 }}>
-                    <button type="submit" style={{ padding: "0.5em 1.5rem" }}>
-                        DO IT SHORT
-                    </button>
-                </div>
-            </div>
-        </form>
-    );
+  const [originalUrl, setOriginalUrl] = useState("");
+  const [shortcode, setShortcode] = useState("");
+  const [customShortcode, setCustomShortcode] = useState("");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!originalUrl || !shortcode) return; // basic validation
+    const expiry = Date.now() + 1000000; // example expiry
+    props.onShorten(originalUrl, shortcode, expiry, customShortcode);
+    setOriginalUrl("");
+    setShortcode("");
+    setCustomShortcode("");
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        Original URL:
+        <input
+          type="text"
+          value={originalUrl}
+          onChange={e => setOriginalUrl(e.target.value)}
+        />
+      </label>
+      <label>
+        Shortcode:
+        <input
+          type="text"
+          value={shortcode}
+          onChange={e => setShortcode(e.target.value)}
+        />
+      </label>
+      <label>
+        Custom Shortcode:
+        <input
+          type="text"
+          value={customShortcode}
+          onChange={e => setCustomShortcode(e.target.value)}
+        />
+      </label>
+      <button type="submit">DO IT SHORT</button>
+    </form>
+  );
 }
 
 export default ShortUrl;
