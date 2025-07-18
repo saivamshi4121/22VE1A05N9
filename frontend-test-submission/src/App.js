@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ShortUrl from "./Components/ShortUrl";
 import StatsPage from "./Pages/StatsPage";
 import RedirectPage from "./Pages/Redirect";
-import { LogProvider } from "../LoggingMiddleware/loginmiddle";
+import { LogProvider } from "./LoggingMiddleware/loginmiddle";
 
 import ShortenerPage from "./Components/ShortenerPage";
 
