@@ -7,8 +7,8 @@ function ShortUrl(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!originalUrl || !shortcode) return; // basic validation
-    const expiry = Date.now() + 1000000; // example expiry
+    if (!originalUrl || !shortcode) return; 
+    const expiry = Date.now() + 1000000; 
     props.onShorten(originalUrl, shortcode, expiry, customShortcode);
     setOriginalUrl("");
     setShortcode("");
